@@ -26,28 +26,30 @@ struct ProfilePhotoSelectView: View {
                 if let profileImage = profileImage {
                     profileImage
                         .resizable()
-                        .scaledToFit()
+//                        .scaledToFit()
                         .frame(width: 180, height: 180)
-                        .padding(.top, 44)
+//                        .padding(.top, 44)
+                        
                         .clipShape(Circle())
+//                        .padding(44)
                 } else {
                     Image(systemName: "camera.circle")
+                        .renderingMode(.template)
                         .resizable()
-//                        .renderingMode(.template)
                         .scaledToFit()
                         .frame(width: 180, height: 180)
-                        .padding(.top, 44)
                 }
             }
-//            .shadow(color: .gray, radius: 5)
+            .shadow(color: .gray, radius: 5)
             .sheet(isPresented: $showImagePicker,
                    onDismiss: loadImage) {
                 ImagePicker(selectedIamge: $selectedImage)
             }
+            .padding(44)
             
             if let selectedImage = selectedImage {
                 Button {
-//                    viewModel.uploadProfileImage(selectedImage)
+                    viewModel.uploadProfileImage(selectedImage)
                     print("DEBUG: Finishing select profile image")
                 } label: {
                     Text("Continue")
@@ -76,7 +78,6 @@ struct ProfilePhotoSelectView: View {
 //private struct ProfileImageModifier: ViewModifier {
 //    func body(content: Content) -> some View {
 //        content
-////            .resizable()
 //            .scaledToFit()
 //            .frame(width: 180, height: 180)
 //            .clipShape(Circle())

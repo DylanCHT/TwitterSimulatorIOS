@@ -30,7 +30,7 @@ struct LoginView: View {
 
                 CustomInputField(fieldImage: "lock",
                                  fieldTextHolder: "Password",
-                                 isSecureField: true,
+//                                 isSecureField: true,
                                  fieldText: $password)
             }
             .padding(.horizontal, 32)

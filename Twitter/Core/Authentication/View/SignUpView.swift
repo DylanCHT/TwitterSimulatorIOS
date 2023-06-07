@@ -12,7 +12,8 @@ struct SignUpView: View {
     @State private var username = ""
     @State private var email = ""
     @State private var password = ""
-    @State private var fullName = ""
+    @State private var fullname = ""
+    
     @Environment(\.presentationMode) var presentationMode
     @EnvironmentObject var viewModel: AuthViewModel
     
@@ -30,17 +31,17 @@ struct SignUpView: View {
                                  fieldTextHolder: "Email",
                                  fieldText: $email)
                 
-//                CustomInputField(fieldImage: "person",
-//                                 fieldTextHolder: "Username",
-//                                 fieldText: $username)
+                CustomInputField(fieldImage: "person",
+                                 fieldTextHolder: "Username",
+                                 fieldText: $username)
 //
-//                CustomInputField(fieldImage: "person",
-//                                 fieldTextHolder: "Full Name",
-//                                 fieldText: $fullName)
+                CustomInputField(fieldImage: "person",
+                                 fieldTextHolder: "Full Name",
+                                 fieldText: $fullname)
 
                 CustomInputField(fieldImage: "lock",
                                  fieldTextHolder: "Password",
-                                 isSecureField: true,
+//                                 isSecureField: true,
                                  fieldText: $password)
                 
             }
@@ -51,9 +52,9 @@ struct SignUpView: View {
             
             Button {
                 viewModel.register(withEmail: email,
+                                   fullname: fullname,
+                                   username: username,
                                    password: password
-//                                   fullname: fullName,
-//                                   username: username
                 )
             } label: {
                 Text("Sign Up")

@@ -6,11 +6,18 @@
 //
 
 import SwiftUI
+import Kingfisher
 
 struct ProfileView: View {
     @State private var selectionFilter: TweetFilterViewModel = .tweets
     @Environment(\.presentationMode) var mode
     @Namespace var animation
+    private let user: User
+    
+    init(user: User) {
+        self.user = user
+    }
+    
     var body: some View {
         VStack(alignment: .leading) {
 
@@ -26,14 +33,14 @@ struct ProfileView: View {
             
             Spacer()
         }
-        
+        .navigationBarBackButtonHidden(true)
 
     }
 }
 
 struct ProfileView_Previews: PreviewProvider {
     static var previews: some View {
-        ProfileView()
+        ProfileView(user: User(username: "lalaland", fullname: "L A", profileImageUrl: "", email: "whatland@gmail.com"))
     }
 }
 
@@ -51,12 +58,15 @@ extension ProfileView {
                     Image(systemName: "arrow.left")
                         .resizable()
                         .frame(width: 20, height: 16)
-                        .foregroundColor(Color(.white))
+                        .foregroundColor(Color(. white))
                         .offset(x: 12, y: 12)
                 }
-                Circle()
+                KFImage(URL(string: user.profileImageUrl))
+                    .resizable()
+                    .scaledToFit()
+                    .clipShape(Circle())
                     .frame(width: 72, height: 72)
-                .offset(x: 12, y: 35)
+                    .offset(x: 12, y: 35)
             }
             
         }.frame(height: 90)
@@ -86,14 +96,14 @@ extension ProfileView {
     var UserInfoView: some View {
         VStack(alignment: .leading, spacing: 4) {
             HStack {
-                Text("Dylan Tao")
+                Text(user.fullname)
                     .font(.title2.bold())
                 
                 Image(systemName: "checkmark.seal.fill")
                     .foregroundColor(Color(.systemBlue))
             }
             
-            Text("@dtd")
+            Text("@\(user.username)")
                 .font(.subheadline)
                 .foregroundColor(.gray)
             
